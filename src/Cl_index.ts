@@ -24,16 +24,20 @@
 // - Todos los métodos de cálculo deben implementarse en Cl_mParticipante (ej: calcularNotaCredenciales(), PonderacionFinalConocimientos(), calcularNotaFinal(), obtenerVeredicto()).
 // - La lógica de Cl_mConcurso debe incluir obtenerParticipantePorId() y calcularResultadosFinales() para el reporte.
 
-import Cl_controlador from "./Cl_controlador.js";
-import Cl_mConcurso from "./Cl_mConcurso.js";
+import Cl_controlador from "../Cl_controlador.js";
+import Cl_mConcurso from "../Cl_mConcurso.js";
 
-import Cl_vActaFinal from "./Vistas/Cl_vActaFinal.js";
-import Cl_vGestionarParticipantes from "./Vistas/Cl_vGestionarParticipantes.js";
-import Cl_vEvaluacionCredenciales from "./Vistas/Cl_vEvaluacionCredenciales.js";
-import Cl_vEvaluacionConocimientos from "./Vistas/Cl_vEvaluacionConocimientos.js";
-import Cl_vEvaluacionAptitudes from "./Vistas/Cl_vEvaluacionAptitudes.js";
-import Cl_vDetalleEvaluaciones from "./Vistas/Cl_vDetalleEvaluaciones.js";
+// Importación de todas las Vistas (Las 6 interfaces de usuario)
+import Cl_vActaFinal from "./Cl_vActaFinal.js";
+import Cl_vGestionarParticipantes from ".Cl_vGestionarParticipantes.js";
+import Cl_vEvaluacionCredenciales from ".Cl_vEvaluacionCredenciales.js";
+import Cl_vEvaluacionConocimientos from "../Cl_vEvaluacionConocimientos.js";
+import Cl_vEvaluacionAptitudes from "../Cl_vEvaluacionAptitudes.js";
+import Cl_vDetalleEvaluaciones from "../Cl_vDetalleEvaluaciones.js";
 
+/**
+ * Clase principal que inicializa e interconecta todas las capas del sistema MVC.
+ */
 export default class Cl_Index {
     public modelo: Cl_mConcurso;
     public vistaActaFinal: Cl_vActaFinal; 
@@ -42,7 +46,7 @@ export default class Cl_Index {
         // 1. Inicialización del Modelo
         const modelo = new Cl_mConcurso();
 
-        // 2. Inicialización de las Vistas
+        // 2. Inicialización de las 6 Vistas
         const vistaActaFinal = new Cl_vActaFinal();
         const vistaGestionarParticipantes = new Cl_vGestionarParticipantes();
         const vistaEvaluacionCredenciales = new Cl_vEvaluacionCredenciales();
@@ -50,11 +54,12 @@ export default class Cl_Index {
         const vistaEvaluacionAptitudes = new Cl_vEvaluacionAptitudes();
         const vistaDetalleEvaluaciones = new Cl_vDetalleEvaluaciones();
         
-        // Asignación de propiedades públicas
+        // Asignación de propiedades públicas (siguiendo el patrón original)
         this.modelo = modelo;
         this.vistaActaFinal = vistaActaFinal;
 
-        // 3. Inicialización del Controlador (El Ensamblaje)
+        // 3. Inicialización del Controlador (El Ensamblaje Central)
+        // Se pasan las 7 dependencias (1 Modelo + 6 Vistas).
         const controlador = new Cl_controlador(
             modelo,
             vistaActaFinal,
@@ -66,6 +71,7 @@ export default class Cl_Index {
         );
 
         // 4. Conexión Inversa (Vistas -> Controlador)
+        // Cada Vista debe poder notificar eventos al Controlador.
         vistaActaFinal.controlador = controlador;
         vistaGestionarParticipantes.controlador = controlador;
         vistaEvaluacionCredenciales.controlador = controlador;
@@ -74,6 +80,7 @@ export default class Cl_Index {
         vistaDetalleEvaluaciones.controlador = controlador;
 
         // 5. Inicio de la Aplicación
+        // El Controlador dirige la aplicación a la vista principal.
         controlador.navegarActaFinal(); 
     }
 }
