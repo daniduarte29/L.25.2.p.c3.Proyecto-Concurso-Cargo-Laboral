@@ -77,13 +77,17 @@ export default class Cl_mParticipante {
 
         set id (id: string) {
         this.id = id;
+        }
         get id (): string {
         return this.id;
+        }
 
         set nombre (nombre: string) {
         this.nombre = nombre;   
+        }
         get nombre (): string {
         return this.nombre;
+        }
 
         set cumpleRequisitos (cumpleRequisitos: boolean) {
         this.cumpleRequisitos = cumpleRequisitos;
