@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concurso Público de Cargo Laboral</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <h1>CONCURSO PÚBLICO DE CARGO LABORAL</h1>
+
+    <div class="main-nav-buttons">
+        <button id="btnActaFinal">Acta Final</button>
+        <button id="btnGestionarAspirantes">Gestionar Participantes</button>
+        <button id="btnDetalleEvaluaciones">Detalle Evaluaciones</button>
+    </div>
+
+    <section id="vistaActaFinalSection">
+        <h2 id="lblTituloActaFinalVeredicto">ACTA FINAL DE VEREDICTO (FCO-11)</h2>
+
+        <h3>Tabla de Aspirantes y Notas Finales</h3>
+        <table id="tablaActaFinal">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Nota Definitiva</th>
+                    <th>Veredicto</th>
+                </tr>
+            </thead>
+            <tbody id="actaFinal_data">
+                </tbody>
+        </table>
+        
+        <div id="ResumenEstadistico">
+            <h3>RESUMEN ESTADÍSTICO</h3>
+            </div>
+    </section>
+
+    <section id="vistaGestionarParticipantesSection" hidden>
+        <h2>GESTIÓN DE ASPIRANTES</h2>
+
+        <div id="formularioRegistro">
+            <h3>Registro de Nuevo Aspirante</h3>
+            <label>Nombre: <input type="text" id="inputNombre"></label>
+            <label>Documento (ID/Cédula): <input type="text" id="inputDocumento"></label>
+            <label>Cumple Requisitos: <input type="checkbox" id="chkCumpleRequisitos"></label>
+            <label>Presente: <input type="checkbox" id="chkPresente"></label>
+            <div>
+                <button id="btnAceptar">Registrar</button>
+                <button id="btnCancelar">Cancelar</button>
+            </div>
+        </div>
+        
+        <hr>
+
+        <h3>Lista de Participantes</h3>
+        <table id="tablaListaParticipantes">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="listaParticipantes_data">
+                </tbody>
+        </table>
+    </section>
+
+    <section id="vistaEvaluacionCredencialesSection" hidden>
+        <h2>EVALUACIÓN DE CREDENCIALES (FCO-5)</h2>
+        <button id="btnAtrasCredenciales">Volver a lista</button>
+    </section>
+
+    <section id="vistaEvaluacionConocimientosSection" hidden>
+        <h2>EVALUACIÓN DE CONOCIMIENTOS (FCO-8)</h2>
+        <div id="formularioConocimientos">
+            <label>Examen Escrito (FCO-8):
+                <input type="number" id="inputExamenEscrito" min="0" max="20">
+            </label> <label>Examen Oral/Práctica (FCO-8.1):
+                <input type="number" id="inputExamenOral" min="0" max="20">
+            </label> <div>
+                <button id="btnGuardarConocimientos">Guardar Notas</button> </div>
+        </div>
+        <button id="btnAtrasConocimientos">Volver a lista</button>
+    </section>
+
+    <section id="vistaEvaluacionAptitudesSection" hidden>
+        <h2>EVALUACIÓN DE APTITUDES (FCO-10)</h2>
+        <button id="btnAtrasAptitudes">Volver a lista</button>
+    </section>
+
+    <section id="vistaDetalleEvaluacionesSection" hidden>
+        <h2>DETALLE DE EVALUACIONES</h2>
+        <button id="btnVolverDetalle">Volver a Acta Final</button>
+    </section>
+
+
+    <script type="module">
+        // Importa y ejecuta la clase principal del proyecto
+        import Cl_Index from "./dist/Cl_Index.js";
+        new Cl_Index();
+    </script>
+</body>
+
+</html>
