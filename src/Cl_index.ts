@@ -1,28 +1,50 @@
-// El sistema gestiona el "PROCESO DE SELECCIÓN - ANALISTA DE INNOVACIÓN", incluyendo registro, evaluación
-// de Credenciales, Conocimientos y Aptitudes, y la generación del Acta Final (FCO-11) y Resumen Estadístico.
+/*1. CONTEXTO Y OBJETIVO
+Global Innovators Corp. requiere desarrollar un sistema automatizado para gestionar sus procesos de selección internacional del cargo "Analista de Innovación". El sistema debe calcular automáticamente las calificaciones de los candidatos basándose en tres pruebas estandarizadas y emitir veredictos finales según criterios predefinidos.
+Objetivo Principal: Automatizar el cálculo de resultados y generación de actas finales del proceso de selección.
 
-// PRINCIPIO DE ARQUITECTURA:
-// Implementación estricta bajo el patrón MVC. Las Vistas solo manejan UI; el Modelo maneja toda la lógica; el Controlador media el flujo.
+2. DESCRIPCIÓN DEL PROCESO ACTUAL
+El proceso de selección consta de TRES PRUEBAS OBLIGATORIAS con ponderaciones específicas:
+PRUEBA 1: EVALUACIÓN DE CREDENCIALES (10%)
+Componentes:
+Estudios de Postgrado (0-35 puntos)
+Estudios de Pregrado (0-30 puntos)
+Producción Científica (0-15 puntos)
+Méritos y Experiencia (0-20 puntos)
+Fórmula: (P1 + P2 + P3 + P4) ÷ 5 = Nota (0-20)
+PRUEBA 2: EVALUACIÓN DE CONOCIMIENTOS (60%)
+Componentes:
+Examen Escrito (0-20 puntos)
+Examen Oral/Práctico (0-20 puntos)
+Fórmula: (Escrito + Oral) ÷ 2 = Nota (0-20)
+PRUEBA 3: EVALUACIÓN DE APTITUDES PARA EL CARGO (30%)
+Método: Matriz con 12 criterios (escala 1-5 puntos)
+Fórmula: Suma de 12 criterios ÷ 9 = Nota (0-20)
+NOTA DEFINITIVA = (Credenciales × 0.10) + (Conocimientos × 0.60) + (Aptitudes × 0.30)
 
-// --------------------------------------------------------------------------------------------------------------------
-// 1. MODELO DE DATOS Y LÓGICA (Cl_mConcurso, Cl_mParticipante)
-// --------------------------------------------------------------------------------------------------------------------
+3. REQUISITOS FUNCIONALES
+3.1 Gestión de Candidatos
+Registrar múltiples candidatos con documento de identidad
+Verificar cumplimiento de requisitos iniciales
+Gestionar estado de participación (presente/ausente)
 
-// La clase Cl_mParticipante es la fuente única de verdad para los datos y resultados de evaluación.
+3.2 Sistema de Evaluación
+Calcular automáticamente las tres pruebas con fórmulas específicas
+Aplicar ponderaciones exactas (10%, 60%, 30%)
+Validar rangos de puntuación (0-20 puntos por prueba)
 
-// ATRIBUTOS DE ENTRADA (Puntajes Crudos - Usando prefijo FCO_ para consistencia con formularios):
-// - Credenciales (Detalle FCO-5): Almacenar puntajes detallados como arreglos de criterios (ICriterioPuntaje[]) para Postgrado (# FCO_5_DetallePostgrado), Pregrado, Producción Científica, y Méritos/Experiencia.
-// - Conocimientos (FCO-8): Almacenar las notas de Examen Escrito (# FCO_8_Escrito) y Oral/Práctica (# FCO_8_1_OralPractica).
-// - Aptitudes (FCO-10): Almacenar las matrices de puntajes por jurado (# FCO_10_PuntajesJuradoA, B, C).
+3.3 Algoritmo de Veredictos
+Asignar automáticamente uno de los 6 veredictos posibles:
+Seleccionado por mayor calificación (mejor nota)
+Seleccionado (nota ≥ 16)
+No seleccionado (nota < 16)
+No seleccionado en Prueba de Conocimiento (nota < 15 en esa prueba)
+No cumple requisitos
+No se presento
+PROCESO DESIERTO: Se declara cuando ningún aspirante alcanza los veredictos 1 o 2.
 
-// ATRIBUTOS DE RESULTADO (Almacenamiento):
-// - Guardar la Nota Base 0-20 de cada evaluación (# notaCredenciales, # notaConocimientos, # notaAptitudes).
-// - Guardar las ponderaciones finales (10%, 60%, 30%) como atributos separados (# ponderacionFinalCredenciales, etc.).
-// - Guardar el resultado consolidado final (# notaFinal, # veredicto).
+Nota.
 
-// MÉTODOS DE CÁLCULO:
-// - Todos los métodos de cálculo deben implementarse en Cl_mParticipante (ej: calcularNotaCredenciales(), PonderacionFinalConocimientos(), calcularNotaFinal(), obtenerVeredicto()).
-// - La lógica de Cl_mConcurso debe incluir obtenerParticipantePorId() y calcularResultadosFinales() para el reporte.
+*/
 
 import Cl_controlador from "../Cl_controlador.js";
 import Cl_mConcurso from "../Cl_mConcurso.js";
