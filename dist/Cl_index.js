@@ -41,6 +41,9 @@ No seleccionado en Prueba de Conocimiento (nota < 15 en esa prueba)
 No cumple requisitos
 No se presento
 PROCESO DESIERTO: Se declara cuando ningún aspirante alcanza los veredictos 1 o 2.
+
+Nota.
+
 */
 import Cl_controlador from "../Cl_controlador.js";
 import Cl_mConcurso from "../Cl_mConcurso.js";
