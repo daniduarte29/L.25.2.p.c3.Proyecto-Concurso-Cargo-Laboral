@@ -112,11 +112,6 @@ export default class Cl_mParticipante {
 
         set FCO_5_1DetallePregrado (FCO_5_1DetallePregrado: iCriterioPuntaje[]) {
         this.FCO_5_1DetallePregrado = FCO_5_1DetallePregrado;
-        }   
-        get FCO_5_1DetallePregrado (): iCriterioPuntaje[] {
-        return this.FCO_5_1DetallePregrado;
-        }
-        set FCO_5_2DetalleProduccion (FCO_5_2DetalleProduccion: iCriterioPuntaje[]) {
         this.FCO_5_2DetalleProduccion = FCO_5_2DetalleProduccion;
         }
         get FCO_5_2DetalleProduccion (): iCriterioPuntaje[] {
