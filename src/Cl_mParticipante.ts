@@ -1,3 +1,5 @@
+import iCriterioPuntaje from "./iCriterioPuntaje";
+
 export interface iParticipante {
   id: number | null;
   creadoEl: string | null;
@@ -101,11 +103,7 @@ export default class Cl_mParticipante {
     this._notaFinal = notaFinal;
     this._veredicto = veredicto;
 
-    if (this._FCO_10_PuntajesJuradoA.length === 0) {
-      this._FCO_10_PuntajesJuradoA.push(0);
-      this._FCO_10_PuntajesJuradoB.push(0);
-      this._FCO_10_PuntajesJuradoC.push(0);
-    } 
+    
   }
 
  

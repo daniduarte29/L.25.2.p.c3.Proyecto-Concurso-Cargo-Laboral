@@ -1,3 +1,4 @@
+import iCriterioPuntaje from "./iCriterioPuntaje";
 export default class Cl_mParticipante {
     constructor({ id = null, creadoEl = null, alias = null, cedula = "", nombre = "", cumpleRequisitos = false, presente = false, FCO_5_DetallePostgrado = [], FCO_5_1DetallePregrado = [], FCO_5_2DetalleProduccion = [], FCO_5_3DetalleMeritos = [], FCO_8_Escrito = 0, FCO_8_1_Oral = 0, FCO_10_PuntajesJuradoA = [], FCO_10_PuntajesJuradoB = [], FCO_10_PuntajesJuradoC = [], notaCredenciales = 0, notaConocimientos = 0, notaAptitudes = 0, ponderacionFinalCredenciales = 0, ponderacionFinalConocimientos = 0, ponderacionFinalAptitudes = 0, notaFinal = 0, veredicto = "", }) {
         this._id = null;
@@ -48,11 +49,6 @@ export default class Cl_mParticipante {
         this._ponderacionFinalAptitudes = ponderacionFinalAptitudes;
         this._notaFinal = notaFinal;
         this._veredicto = veredicto;
-        if (this._FCO_10_PuntajesJuradoA.length === 0) {
-            this._FCO_10_PuntajesJuradoA.push(0);
-            this._FCO_10_PuntajesJuradoB.push(0);
-            this._FCO_10_PuntajesJuradoC.push(0);
-        }
     }
     set id(id) {
         this._id = id;
